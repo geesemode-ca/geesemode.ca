@@ -228,36 +228,24 @@ function loadQuestion() {
   const q = questions[currentQuestion];
 
   quiz.innerHTML = `
-    <div style="margin-bottom:30px;">
+    <div class="quiz-question-block">
 
-      <h2 style="color:#444;">
+      <h2 class="quiz-question-count">
         Question ${currentQuestion + 1} / 10
       </h2>
 
-      <p style="font-size:24px;">
+      <p class="quiz-question-text">
         ${q.question}
       </p>
 
-      <hr style="margin-bottom:20px;">
+      <hr class="quiz-question-divider">
 
-      <div style="
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:12px;
-      ">
+      <div class="quiz-answers-grid">
 
         ${q.answers.map((answer, index) => `
           <button
+            class="quiz-answer-btn"
             onclick="selectAnswer(${index})"
-            style="
-              padding:16px;
-              border:none;
-              border-radius:10px;
-              background:#4a90e2;
-              color:white;
-              font-size:16px;
-              cursor:pointer;
-            "
           >
             ${answer}
           </button>
@@ -290,7 +278,7 @@ function selectAnswer(index) {
 function showResults() {
 
   document.getElementById("quiz").style.display = "none";
-  document.getElementById("resultSection").style.display = "block";
+  document.getElementById("resultSection").classList.add("is-visible");
 
   // Progress Circle
   const percent = score / questions.length;
@@ -350,19 +338,13 @@ function showResults() {
   if (wrongList.length > 0) {
 
     wrongHTML += `
-      <h3 style="margin-top:0;">❌ Questions You Got Wrong</h3>
+      <h3 class="quiz-wrong-heading">❌ Questions You Got Wrong</h3>
     `;
 
     wrongList.forEach((item, i) => {
 
       wrongHTML += `
-        <div style="
-          margin-bottom:20px;
-          padding:12px;
-          background:white;
-          border-radius:8px;
-          border-left:5px solid #ff5c5c;
-        ">
+        <div class="quiz-wrong-item">
 
           <strong>Question ${i + 1}:</strong>
           <br><br>
@@ -371,13 +353,13 @@ function showResults() {
 
           <br><br>
 
-          <span style="color:#d33;">
+          <span class="quiz-answer-wrong">
             Your Answer: ${item.yourAnswer}
           </span>
 
           <br>
 
-          <span style="color:#2e8b57;">
+          <span class="quiz-answer-correct">
             Correct Answer: ${item.correctAnswer}
           </span>
 
@@ -388,14 +370,7 @@ function showResults() {
   } else {
 
     wrongHTML = `
-      <div style="
-        background:#e8ffe8;
-        padding:20px;
-        border-radius:10px;
-        font-size:20px;
-        font-weight:bold;
-        color:#2e8b57;
-      ">
+      <div class="quiz-all-correct">
         🎉 You got every question correct!
       </div>
     `;
