@@ -64,6 +64,30 @@
     .quiz-answer-wrong { color: #d33; }
     .quiz-answer-correct { color: #2e8b57; }
     .quiz-all-correct { background: #e8ffe8; padding: 20px; border-radius: 10px; font-size: 20px; font-weight: bold; color: #2e8b57; }
+
+    /* Auto dark mode (follows browser/OS preference) */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary: #7c93ff;
+        --secondary: #c77dff;
+        --text: #e6e6f0;
+        --border: #33374a;
+        --bg: #14151f;
+      }
+      .sb-divider { border-color: #444a5e; }
+
+      /* Goose quiz */
+      .quiz-card { background: #1c1e2b; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+      .quiz-title { color: #e6e6f0; }
+      .quiz-question-count { color: #b7bccf; }
+      .quiz-message { color: #e6e6f0; }
+      .quiz-wrong-answers { background: #232534; }
+      .quiz-wrong-item { background: #1c1e2b; border-left-color: #ff6f6f; }
+      .quiz-answer-wrong { color: #ff8080; }
+      .quiz-answer-correct { color: #4fd394; }
+      .quiz-all-correct { background: #163d2a; color: #4fd394; }
+      .quiz-score-ring circle:first-child { stroke: #3a3d4d; }
+    }
   </style>
 </head>
 <body>
