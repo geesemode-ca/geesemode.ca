@@ -2,10 +2,31 @@
     <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script type="text/javascript">
+    // Old-browser detector: written with ES3-only syntax (var/function, no arrow
+    // functions, template literals, or let/const) so it parses safely even in
+    // ancient browsers. Redirects to the classic fallback if this browser is
+    // missing features the modern page/CSS below depends on.
+    (function () {
+      var ok = true;
+      try {
+        if (!document.querySelector) { ok = false; }
+        if (!document.documentElement || !('classList' in document.documentElement)) { ok = false; }
+        if (!window.getComputedStyle) { ok = false; }
+        if (!(window.CSS && CSS.supports && CSS.supports('color', 'var(--x)'))) { ok = false; }
+      } catch (e) {
+        ok = false;
+      }
+      if (!ok) {
+        window.location.replace('legacy/');
+      }
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GEESEMODE</title>
-  <link rel="icon" type="image/x-icon" href="icon.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM%20Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
